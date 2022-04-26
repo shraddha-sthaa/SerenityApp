@@ -129,7 +129,8 @@ class _BottomSheetViewState extends State<BottomSheetView> {
                                               height: 5,
                                             ),
                                             Text(
-                                              widget.model.description,
+                                              // widget.model.description,
+                                              "Shradda Ma'am",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white,

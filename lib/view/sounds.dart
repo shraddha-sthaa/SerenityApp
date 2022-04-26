@@ -31,7 +31,7 @@ class _SoundViewState extends State<SoundView> with TickerProviderStateMixin {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 0),
+      duration: const Duration(seconds: 0),
     );
     player.playerStateStream.listen((event) {
       isplaying = event.playing;
@@ -93,51 +93,54 @@ class _SoundViewState extends State<SoundView> with TickerProviderStateMixin {
                                   playcontroller
                                       .addRelaxingSound(relaxingsound);
                                 },
-                                child: Container(
-                                  //clipBehavior: Clip.hardEdge,
-                                  decoration: BoxDecoration(
-                                    color: playcontroller.relaxingsound.any(
-                                            (element) =>
-                                                element.rsoundId ==
-                                                relaxingsound.rsoundId)
-                                        ? Colors.red
-                                        : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  margin:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  // color: Colors.orange[200],
-                                  child: Column(
-                                    mainAxisAlignment: index % 4 == 0
-                                        ? MainAxisAlignment.start
-                                        : MainAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 80,
-                                        height: 80,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          child: CachedNetworkImage(
-                                            imageUrl: RemoteServices
-                                                    .initialUrl +
-                                                '/relaxingsounds/relaxingsoundfiles/' +
-                                                relaxingsound.rsImage,
-                                            fit: BoxFit.cover,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    //clipBehavior: Clip.hardEdge,
+                                    decoration: BoxDecoration(
+                                      color: playcontroller.relaxingsound.any(
+                                              (element) =>
+                                                  element.rsoundId ==
+                                                  relaxingsound.rsoundId)
+                                          ? Colors.grey
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 8),
+                                    // color: Colors.orange[200],
+                                    child: Column(
+                                      mainAxisAlignment: index % 4 == 0
+                                          ? MainAxisAlignment.start
+                                          : MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 80,
+                                          height: 80,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            child: CachedNetworkImage(
+                                              imageUrl: RemoteServices
+                                                      .initialUrl +
+                                                  '/relaxingsounds/relaxingsoundfiles/' +
+                                                  relaxingsound.rsImage,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      // // ignore: prefer_const_constructors
-                                      Text(
-                                        relaxingsound.rsName.trim(),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
+                                        // // ignore: prefer_const_constructors
+                                        Text(
+                                          relaxingsound.rsName.trim(),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
