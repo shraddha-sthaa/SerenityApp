@@ -63,7 +63,9 @@ class AdminPaymentView extends StatelessWidget {
                             child: Padding(
                               padding:
                                   const EdgeInsets.fromLTRB(15, 12, 15, 12),
-                              child: Text("Total: Rs ${controller.total}"),
+                              child: Text(
+                                "Total: Rs ${(controller.total) / 100}",
+                              ),
                             ),
                           ),
                         ),
@@ -87,7 +89,8 @@ class AdminPaymentView extends StatelessWidget {
                                   model.username,
                                   model.date,
                                   model.email,
-                                  model.totalAmount,
+                                  (double.parse(model.totalAmount) / 100)
+                                      .toString(),
                                 );
                               },
                             ),

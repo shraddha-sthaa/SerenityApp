@@ -2,8 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:serenity/controller/datasavingcontroller.dart';
 import 'package:serenity/controller/psy_user_list_controller.dart';
 import 'package:serenity/controller/usercontroller/selectpsycontroller.dart';
+import 'package:serenity/model/psyprofile_model.dart';
 import 'package:serenity/view/chat.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -84,35 +86,44 @@ class SelectUserChatView extends StatelessWidget {
               ],
             ),
             body: GetBuilder<ReadPsyUsers>(
-              init: ReadPsyUsers(id: "1"),
+              init: ReadPsyUsers(),
               builder: (controller) {
-                return ListView.builder(
-                  itemCount: controller.profiles.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChatPage(
-                              userid: controller.profiles[index].profileId
-                                  .toString(),
-                              psyid: "1",
-                              title: controller.profiles[index].username,
-                              usr: "psy",
-                            ),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: userDetailsCard(
-                          controller.profiles[index].username,
-                          controller.profiles[index].email,
-                        ),
-                      ),
-                    );
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    await controller.getAllUsers();
                   },
+                  child: ListView.builder(
+                    itemCount: controller.profiles.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () async {
+                          DataSavingController dsc = DataSavingController();
+                          PsyProfileModel? psyProfile =
+                              await dsc.readPsyProfile();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChatPage(
+                                userid: controller.profiles[index].profileId
+                                    .toString(),
+                                psyid: psyProfile!.psyProfileid.toString(),
+                                title: controller.profiles[index].username,
+                                usr: controller.profiles[index].profileId
+                                    .toString(),
+                              ),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: userDetailsCard(
+                            controller.profiles[index].username,
+                            controller.profiles[index].email,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             ),

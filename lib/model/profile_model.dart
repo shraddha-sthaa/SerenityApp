@@ -45,7 +45,7 @@ class ProfileModel {
         username: json["username"],
         password: json["password"],
         email: json["email"],
-        phone: json["phone"],
+        phone: json["phone"] ?? "",
         notificationId: json["notification_id"],
         profileImage: json["profile_image"],
       );

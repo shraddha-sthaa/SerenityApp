@@ -4,6 +4,12 @@
 
 import 'dart:convert';
 
+PsyProfileModel singlepsyProfileModelFromJson(String str) =>
+    PsyProfileModel.fromJson(json.decode(str));
+
+String singlepsyProfileModelToJson(PsyProfileModel data) =>
+    json.encode(data.toJson());
+
 List<PsyProfileModel> psyProfileModelFromJson(String str) =>
     List<PsyProfileModel>.from(
         json.decode(str).map((x) => PsyProfileModel.fromJson(x)));

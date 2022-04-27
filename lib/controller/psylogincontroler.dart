@@ -6,6 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:serenity/controller/datasavingcontroller.dart';
 import 'package:serenity/model/profile_model.dart';
+import 'package:serenity/model/psychat_model.dart';
+import 'package:serenity/model/psyprofile_model.dart';
 import 'package:serenity/utilis/remoteservices.dart';
 import 'package:serenity/view/selectuserview.dart';
 
@@ -20,11 +22,11 @@ class PsyLoginController extends GetxController {
       String result = json.decode(response)['status'];
       Fluttertoast.showToast(msg: result);
     } else {
-      // ProfileModel profile = profileModelFromJson(response);
-      // log(profile.email);
-      // DataSavingController dsc = DataSavingController();
-      // dsc.saveProfile(profile);
-      // Fluttertoast.showToast(msg: "Login Successful");
+      PsyProfileModel profile = singlepsyProfileModelFromJson(response);
+      log(profile.email);
+      DataSavingController dsc = DataSavingController();
+      dsc.savePsyProfile(profile);
+      Fluttertoast.showToast(msg: "Login Successful");
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => SelectUserChatView()),

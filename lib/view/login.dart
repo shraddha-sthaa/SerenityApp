@@ -303,7 +303,12 @@ class LogInView extends StatelessWidget {
 
                                 // Once signed in, return the UserCredential
                                 await FirebaseAuth.instance
-                                    .signInWithCredential(credential);
+                                    .signInWithCredential(credential)
+                                    .then((value) {
+                                  log(value.toString());
+                                });
+
+                                log("Step 4 Complete");
 
                                 ProfileModel profile = ProfileModel(
                                   email: googleUser!.email,

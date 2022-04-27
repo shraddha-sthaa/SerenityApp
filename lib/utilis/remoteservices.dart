@@ -16,7 +16,7 @@ import 'constant.dart';
 class RemoteServices {
   // static String initialUrl =
   //     "https://serenity-fyp.000webhostapp.com"; //cmd->ipconfig->IPv4
-  static String initialUrl = "http://192.168.1.92/serenity";
+  static String initialUrl = "http://192.168.1.82/serenity";
 
   static Future<String> login(String email, String password) async {
     String url = initialUrl + '/login.php?email=$email&password=$password';
@@ -102,6 +102,7 @@ class RemoteServices {
   static Future<String> getProfileById(String id) async {
     String url = initialUrl + '/readprofile.php?id=$id';
     var response = await Dio().get(url);
+    log(url.toString());
     return response.data;
   }
 
@@ -191,11 +192,11 @@ class RemoteServices {
 
     var response = await Dio().post(
       url.toString(),
-      data: {
+      data: FormData.fromMap({
         "email": email,
         "password": currentPassword,
         "newpassword": newPassword,
-      },
+      }),
     );
     log(response.data);
     return response.data;

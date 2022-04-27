@@ -191,7 +191,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             var bytes2 = utf8
                                 .encode(newPassword.text); // data being hashed
 
-                            var digest2 = sha1.convert(bytes);
+                            var digest2 = sha1.convert(bytes2);
                             controller.changePassword(
                               context,
                               email.text,

@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: SplashPage(),
+          home: AdminLogInView(),
           routes: {
             '/homepage': (_) => MainPanelView(),
             '/loginpage': (_) => LogInView(),

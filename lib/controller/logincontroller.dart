@@ -22,7 +22,7 @@ class LoginController extends GetxController {
       ProfileModel profile = profileModelFromJson(response);
       log(profile.email);
       DataSavingController dsc = DataSavingController();
-      dsc.saveProfile(profile);
+      await dsc.saveProfile(profile);
       Fluttertoast.showToast(msg: "Login Successful");
       Navigator.pushNamedAndRemoveUntil(context, '/homepage', (event) => false);
     }
