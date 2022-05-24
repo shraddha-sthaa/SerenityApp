@@ -16,7 +16,7 @@ import 'constant.dart';
 class RemoteServices {
   // static String initialUrl =
   //     "https://serenity-fyp.000webhostapp.com"; //cmd->ipconfig->IPv4
-  static String initialUrl = "http://192.168.1.82/serenity";
+  static String initialUrl = "http://192.168.1.97/serenity";
 
   static Future<String> login(String email, String password) async {
     String url = initialUrl + '/login.php?email=$email&password=$password';
