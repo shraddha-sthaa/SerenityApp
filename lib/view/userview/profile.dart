@@ -108,6 +108,7 @@ class ProfileView extends StatelessWidget {
                                         children: [
                                           ListTile(
                                             onTap: () {
+                                              // configuring khalti
                                               if (snapshot.data!.premiumUser ==
                                                   0) {
                                                 final config = PaymentConfig(
@@ -124,6 +125,8 @@ class ProfileView extends StatelessWidget {
                                                   },
                                                   // Not mandatory; makes the mobile field not editable
                                                 );
+
+                                                //UI of Khalti
                                                 KhaltiScope.of(context).pay(
                                                   config: config,
                                                   preferences: [

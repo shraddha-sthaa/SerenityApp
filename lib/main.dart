@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // adding khalti to widget tree
     return KhaltiScope(
       publicKey: 'test_public_key_1bbd54f33742456ab3915145d67ccfde',
       builder: (context, navKey) {
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: AdminUploadView(),
+          home: SplashPage(), //
           routes: {
             '/homepage': (_) => MainPanelView(),
             '/loginpage': (_) => LogInView(),

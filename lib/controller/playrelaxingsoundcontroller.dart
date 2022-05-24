@@ -228,6 +228,7 @@ class PlayRelaxingSoundController extends GetxController {
             "/relaxingsounds/relaxingsoundfiles/" +
             relaxingsound[0].audio);
         player1.play();
+        player1.setLoopMode(LoopMode.all);
         playing = true;
         update();
         return "";
@@ -241,6 +242,8 @@ class PlayRelaxingSoundController extends GetxController {
         player1.play();
         player2.play();
         playing = true;
+        player1.setLoopMode(LoopMode.all);
+        player2.setLoopMode(LoopMode.all);
         update();
 
         return "";
@@ -257,6 +260,10 @@ class PlayRelaxingSoundController extends GetxController {
         player1.play();
         player2.play();
         player3.play();
+
+        player1.setLoopMode(LoopMode.all);
+        player2.setLoopMode(LoopMode.all);
+        player3.setLoopMode(LoopMode.all);
         playing = true;
         update();
         return "";
@@ -278,6 +285,10 @@ class PlayRelaxingSoundController extends GetxController {
         player3.play();
         player4.play();
         playing = true;
+        player1.setLoopMode(LoopMode.all);
+        player2.setLoopMode(LoopMode.all);
+        player3.setLoopMode(LoopMode.all);
+        player4.setLoopMode(LoopMode.all);
         update();
         return "";
       default:
